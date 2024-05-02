@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shortest React Program</title>
+</head>
+<body>
+    <div id="root">React Intro Session</div>
+
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+
+    <!-- This is how we add "h1" tag using JS -->
+    <script>
+      let header = document.createElement("h1");
+      header.innerHTML = "Hello World..!"
+      let div = document.getElementById("root");
+      div.appendChild(header)
+    </script>
+
+    <!--  This is how we add "h1" tag using React, 
+          Be careful this will override above code NO matter the sequence of both the scripts -->
+    <script>
+      let h1 = React.createElement("h1", {
+        id:"title",
+        className: "header",
+        style: {
+          color: "orange"
+        }
+      }, "Welcome to React Series..!", " This is Another Child Node");
+      let root = ReactDOM.createRoot(document.getElementById("root"));
+      // root.render(h1)
+
+      // inserting multiple tags inside the root using React
+      let heading2 = React.createElement("h2", {className: "header"}, "Second Heading");
+      let heading3 = React.createElement("h3", {className: "header"}, "Third Heading");
+      let container = React.createElement("div", null, [h1, heading2, heading3]);
+      root.render(container)
+
+    </script>
+
+</body>
+</html>
