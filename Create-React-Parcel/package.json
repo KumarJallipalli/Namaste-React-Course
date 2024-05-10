@@ -1,0 +1,27 @@
+{
+  "name": "create-react-parcel",
+  "version": "1.0.0",
+  "description": "This is the 1st React App created using Parcel Bundler",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KumarJallipalli/Namaste-React-Course.git"
+  },
+  "author": "Siva Jallipalli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KumarJallipalli/Namaste-React-Course/issues"
+  },
+  "homepage": "https://github.com/KumarJallipalli/Namaste-React-Course#readme",
+  "devDependencies": {
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}
