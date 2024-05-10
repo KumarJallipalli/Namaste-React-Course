@@ -41,5 +41,66 @@ const div = React.createElement("div", {
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(div);
+/**
+ *  If we want to replicate the following code using React
+ *  <div>
+ *          <h1>This is Heading</h1>
+            <ul>
+                <li>About Me</li>
+                <li>Home</li>
+                <li>Career</li>
+            </ul>
+        </div>
+*/
 
+const div2 = React.createElement("div",{},[
+    // Creating <h1></h1> inside the <div></div>
+    React.createElement("h1",{
+        id: "head1",
+        style: {
+            color:"red",
+            backgroundColor: "yellow"
+        }
+    },"This is Heading-1"),
+    // Creating <ul></ul> inside the <div></div>
+    React.createElement("ul",{},[
+        // Creating <li></li>
+        React.createElement("li", {}, "Home"),
+        React.createElement("li", {}, "Education"),
+        React.createElement("li", {}, "Work"),
+        React.createElement("li", {}, "About")
+    ])
+])
+
+
+
+
+// React Element 
+const element = (
+    // the below code is JSX, hence we use className [works in JSX] instead of class [works in HTML]
+    <h3 className="head3">Third Heading inside the React Element</h3>
+)
+
+// Functional Component
+const FunctionalComponent = () => {
+    return (
+        <h4>
+            Fourth heading inside the Functional Component 2
+        </h4>
+    );
+};
+
+// here, as we have used Arrow fn, we have removed the return too
+const FunctionalComponent1 = () => (
+    <div>
+        <h1>Heading inside the Functional Component</h1>
+        <h2>Second Heading inside the Functional Component</h2>
+        {element}
+        <FunctionalComponent/>
+        {/* {FC()} // we can use this format too for injecting FC inside FC -> Component Composition */}
+        {/* {console.log(Math.PI)} // JS code used as expression inside JSX  */}
+    </div>
+);
+
+// rendering using Functional component
+root.render(<FunctionalComponent1/>);
