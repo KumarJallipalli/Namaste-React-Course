@@ -4,6 +4,7 @@
     display: flex;
     justify-content: space-between;
     margin: 10px;
+    border: solid black 1px;
 }
 
 .header > div {
