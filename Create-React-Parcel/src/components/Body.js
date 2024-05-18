@@ -2,6 +2,7 @@ import RestuarantCard from "./RestuarantCard";
 import { restuarantList } from "../constants";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 function filterData(searchText, allRestuarants) {
   return allRestuarants.filter((i) =>
@@ -9,7 +10,6 @@ function filterData(searchText, allRestuarants) {
   );
 }
 
-console.log("Outside");
 
 // Body Component
 const Body = () => {
@@ -18,8 +18,6 @@ const Body = () => {
   // Creating a state variable for filtering the data
   const [allRestuarants, setAllRestuarants] = useState([]); // here we used empty array, so to use in conditional rendering
   const [filteredRestuarants, setFilteredRestuarants] = useState([]);
-
-  console.log("inside");
 
   // useEffect()
   useEffect(() => {
@@ -58,11 +56,6 @@ const Body = () => {
           type="text"
           placeholder="Search.."
           value={searchText}
-          //   // This is to change the value of input field, But still doesn't work with the below code as well
-          //   // Because Local variable are NOT maintained in React, We Use so called React Variables
-          //   onChange={(e) => {
-          //     searchTxt = e.target.value;
-          //   }}
 
           // Changing the State Varible
           onChange={(e) => {
@@ -91,7 +84,7 @@ const Body = () => {
           <h2>No Results Found...</h2>
         ) : (
           filteredRestuarants.map((i) => {
-            return <RestuarantCard {...i.info} key={i.info.id} />;
+            return <Link to={"/restuarant/" + i.info.id} key={i.info.id}><RestuarantCard {...i.info} /></Link>;
           })
         )}
       </div>

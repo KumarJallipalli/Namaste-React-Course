@@ -2,25 +2,79 @@
 import React  from "react";
 import ReactDOM  from "react-dom/client";
 
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+
 import Header from "./components/Header";
 import Body from "./components/Body";
 import RestuarantCard from "./components/RestuarantCard";
 import Footer from "./components/Footer";
+import About from "./components/About"
+import Error from "./components/Error"
+import Contact from "./components/Contact";
+import RestuarantMenu from "./components/RestuarantMenu"; 
+import Profile from "./components/Profile";
 
 
 const AppComponent = () => {
     return (
         <React.Fragment>
             <Header />
-            <Body/>
+            <Outlet/>
             <Footer/>
         </React.Fragment>
     )
 }
 
 
+// This needs to be written after AppComponent only, as it gets executed in sequence
+const appRouter = createBrowserRouter([
+    {
+        path: "/",
+        element: <AppComponent/>,
+        children: [
+            {
+                path: "/",
+                element: <Body/>
+            },
+            {
+                path: "/about",
+                element: <Outlet/>,
+                children: [
+                    {
+                        /**
+                         * Here, Don't Use "/profile" 
+                         *      - "/profile" == parentpath == "Localhost:1234/profile" 
+                         *      - "profile" == parentpath + path == "localhost:1234/about/profile" 
+                        */
+                        path: "profile",
+                        element: <Profile/>
+                    },
+                    {
+                        path: "/about",
+                        element: <About/>
+                    }
+                ]
+            },
+            {
+                path: "/contact",
+                element: <Contact/>
+            },
+            {
+                path: "/restuarant/:resid",
+                element: <RestuarantMenu/>
+            }
+        ],
+        
+        //This is to handle the error in routing & it "must inside the 1st object"
+        errorElement: <Error/>
+    }
+])
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppComponent/>)
+
+//We will be routing the root rendering
+// root.render(<AppComponent/>)
+root.render(<RouterProvider router={appRouter} />)
 
 
 
